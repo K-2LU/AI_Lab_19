@@ -616,3 +616,43 @@ while True:
         break
 
     print(findans(question))
+
+// crypt nb
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    string s1, s2, s3;
+    cin >> s1 >> s2 >> s3;
+    set<char> st;
+    vector<int> pos(30, 0);
+    for(char ch : s1) st.insert(ch);
+    for(char ch : s2) st.insert(ch);
+    for(char ch : s3) st.insert(ch);
+    int k = 0;
+    for(char ch : st) pos[ch - 'a'] = k++;
+    vector<int> nums = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    do
+    {
+        int n1 = 0, n2 = 0, n3 = 0;
+        if(nums[pos[s1[0] - 'a']] == 0 || nums[pos[s2[0] - 'a']] == 0 || nums[pos[s3[0] - 'a']] == 0) continue;
+        for(char ch : s1) n1 = n1 * 10 + nums[pos[ch - 'a']];
+        for(char ch : s2) n2 = n2 * 10 + nums[pos[ch - 'a']];
+        for(char ch : s3) n3 = n3 * 10 + nums[pos[ch - 'a']];
+        if(n1 + n2 == n3)
+        {
+            for(char ch : st) cout << ch << " " << nums[pos[ch - 'a']] << "\n";
+            for(char ch : s1) cout << nums[pos[ch - 'a']];
+            cout << "\n";
+            for(char ch : s2) cout << nums[pos[ch - 'a']];
+            cout << "\n";
+            for(char ch : s3) cout << nums[pos[ch - 'a']];
+            cout << "\n";
+            break;
+        }
+    }
+    while(next_permutation(nums.begin(), nums.end()));
+    return 0;
+}
