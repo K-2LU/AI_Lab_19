@@ -67,18 +67,14 @@ bool sudokuSolver(int grid[9][9]) {
             if (sudokuSolver(grid)) {
 
                 vector<vector<int>> temp(9);
+                
                 for (size_t a = 0; a < 9; a++)
-                {
                     for (size_t b = 0; b < 9; b++)
-                    {
                         temp[a].push_back(grid[a][b]);
-                    }
-                    
-                }
                 solutions[index++] = temp;
+             
                 return true; 
             }
-
             grid[row][col] = 0;
         }
     }
